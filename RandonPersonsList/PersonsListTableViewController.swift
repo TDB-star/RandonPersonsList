@@ -9,23 +9,18 @@ import UIKit
 
 class PersonsListTableViewController: UITableViewController {
 
-    var person = Person.getperson()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-
+    var person = DataManager.getperson()
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return person.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PersonCell", for: indexPath)
-        cell.textLabel?.text = person[indexPath.row].fullName
-
+        let persons = person[indexPath.row]
+        var content = cell.defaultContentConfiguration()
+        content.text = persons.fullName
+        cell.contentConfiguration = content
         return cell
     }
     
@@ -38,7 +33,6 @@ class PersonsListTableViewController: UITableViewController {
         guard let indexPath = tableView.indexPathForSelectedRow  else { return }
         let selectedPerson = person[indexPath.row]
         detailVC.person = selectedPerson
-        
     }
     
 }

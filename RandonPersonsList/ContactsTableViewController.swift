@@ -8,38 +8,47 @@
 import UIKit
 
 class ContactsTableViewController: UITableViewController {
-
+    
+    let person = DataManager.getperson()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+       
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let section = person[section].fullName
+        return section
     }
 
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return person.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 2
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        
+        let model = person[indexPath.row]
+        switch model.self {
+        case _ : let cell = tableView.dequeueReusableCell(withIdentifier: "ContactsCell", for: indexPath)
+            cell.textLabel?.text = person[indexPath.row].telephone
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ContactsCell", for: indexPath)
+                cell.textLabel?.text = person[indexPath.row].email
+                return cell
+        }
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "ContactsCell", for: indexPath)
+//        
+//        let section = person[indexPath.section].fullName
+//        cell.textLabel?.text = person[indexPath.row].email
+//        cell.textLabel?.text = person[indexPath.row].telephone
+//        return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

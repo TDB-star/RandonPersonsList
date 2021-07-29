@@ -21,7 +21,4 @@ class DetailViewController: UIViewController {
         emailLabel.text = person.email
         navigationItem.title = person.fullName
     }
-    
-
-    
 }
